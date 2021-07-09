@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Weather Dashboard</title>
 
@@ -12,7 +15,7 @@
 
 <header>
 
-    <h1></h1>Weather Dashboard</h1>
+    <h1></h1>☀️ Weather Dashboard 🌧️</h1>
 
 </header>
 
@@ -20,32 +23,49 @@
 
     <main>
         <section class="search-area">
-            <h1>Search for a city</h1>
-            <form id="search-form" >
-                <input id="search-input" class= type="text" placeholder="Perth">
+            <h1>Search for a City:</h1>
+            <form id="search-form">
+                <input id="search-input" class=type="text" placeholder="Perth">
+                <button id="search-button">Search</button>
+            </form>
         </section>
 
         <section class="display-area">
-           
-            <div class ="main-display">
-                test
+
+            <div class="main-display">
+                <h1>City (11/11/2020) <span id=weathericon-main>**</span></h1>
+                <ul>
+                    <li>Test</li>
+                    <li>Test</li>
+                    <li>Test</li>
+                    <li>Test</li>
+                </ul>
             </div>
-            
+
             <div class="five-day-area">
                 <h1>Five Day Forecast:</h1>
-                <div class ="box-container">
-                <div class="box" id ="box-1"></div>
-                <div class="box" id ="box-2"></div>
-                <div class="box" id ="box-3"></div>
-                <div class="box" id ="box-4"></div>
-                <div class="box" id ="box-5"></div>
+                <div class="box-container">
+                    <div class="box" id="box-1">
+                        <h1>City (11/11/2020) <span id=weathericon-1>**</span></h1>
+                        <ul>
+                            <li>Test</li>
+                            <li>Test</li>
+                            <li>Test</li>
+                        </ul>
+                    </div>
+                    <div class="box" id="box-2"></div>
+                    <div class="box" id="box-3"></div>
+                    <div class="box" id="box-4"></div>
+                    <div class="box" id="box-5"></div>
                 </div>
             </div>
-    
+
         </section>
 
-        
+
     </main>
+
+    <script src="assets\js\script.js"></script>
 </body>
 
 </html>
