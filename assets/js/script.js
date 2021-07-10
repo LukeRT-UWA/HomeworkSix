@@ -91,7 +91,8 @@ function search(event) {
                 document.getElementById('main-UVI').classList.remove("moderate-severity")
             }
 
-
+            //clear box before for loop runs
+            document.getElementById('box-container').innerHTML = ""
             // populate 5 days section
             for (let index = 1; index < 6; index++) {
                 const daily = onecallData.daily[index];
