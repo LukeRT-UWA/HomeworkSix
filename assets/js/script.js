@@ -1,9 +1,5 @@
 const apiKey = "bbc2b5e33bc93b1c9b2424b433881299"
 var currentTime = moment().format("DD" + "/" + "MM" + "/" + "YYYY");
-var tomorrow = moment().add(1, 'days')
-var tomorrowDate = tomorrow.format("DD" + "/" + "MM" + "/" + "YYYY");
-console.log(tomorrow)
-console.log(tomorrowDate)
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
 function getCityForecast(cityName) {
@@ -41,7 +37,7 @@ function getOneCall(lat, lon) {
 
 function search(event) {
     event.preventDefault();
-    const userInput = document.getElementById('search-input').value;
+    var userInput = document.getElementById('search-input').value;
 
     getCityForecast(userInput)
         .then((data) => {
@@ -151,4 +147,6 @@ function search(event) {
 }
 
 document.getElementById('search-form').addEventListener("submit", search);
+
+
 
