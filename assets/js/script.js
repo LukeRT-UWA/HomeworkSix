@@ -93,15 +93,46 @@ function search(event) {
 
 
             // populate 5 days section
-            for (let index = 0; index < 5; index++) {
+            for (let index = 1; index < 6; index++) {
                 const daily = onecallData.daily[index];
-                console.log(daily)
 
+                // Set variables for required data from API
+                console.log(daily)
+                let dailyIcon = daily.weather[0].icon
+                console.log(dailyIcon)
                 let dailyTemp = daily.temp
                 let dailyWind = daily.wind_speed
                 let dailyHumidity = daily.humidity
+                // Create boxes on page
+                let boxContainer = document.getElementById('box-container')
+                let boxDiv = document.createElement("div")
+                boxDiv.setAttribute("class", "box")
+                // assign IDs to boxes
+                boxDiv.setAttribute("id", "box-" + index)
+                // attach boxes to parent container
+                boxContainer.appendChild(boxDiv)
+                //create required fields in boxes + attach IDs
+                let boxDate = document.createElement("h3")
+                boxDiv.appendChild(boxDate)
+                boxDate.setAttribute("id", "box-date-" + index)
+                let boxIcon = document.createElement("img")
+                boxDiv.appendChild(boxIcon)
+                boxIcon.setAttribute("id", "box-icon-" + index)
+                let boxList = document.createElement("ul")
+                boxDiv.appendChild(boxList)
+                boxList.setAttribute("id", "box-list-" + index)
+                let listTemp = document.createElement("li")
+                boxList.appendChild(listTemp)
+                listTemp.setAttribute("id", "list-temp-" + index)
+                let listWind = document.createElement("li")
+                boxList.appendChild(listWind)
+                listWind.setAttribute("id", "list-wind-" + index)
+                let listHumidity = document.createElement("li")
+                boxList.appendChild(listHumidity)
+                listHumidity.setAttribute("id", "list-humidity-" + index)
+                //populate IDs with API data
+                document.getElementById('box-date-' + index).textContent = "filler"
 
-                
             }
         });
 
