@@ -55,7 +55,7 @@ function search(event) {
             document.getElementById('main-city').textContent = (userInput + " ")
             // Temperature
             let todayTemp = original.main.temp;
-            let todayTempC = (todayTemp - -273.15);
+            let todayTempC = (todayTemp - 273.15);
             let todayTempFinal = todayTempC.toFixed(2)
             // Wind
             document.getElementById('main-temperature').textContent = ("Temp: " + todayTempFinal + "°C")
