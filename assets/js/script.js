@@ -68,9 +68,11 @@ function search(event){
             document.getElementById('main-UVI').classList.remove("hide")
             document.getElementById('main-UVI').textContent = (todayUVI)
             // Date
-            document.getElementById('main-date').textContent = currentTime
+            document.getElementById('main-date').textContent = (currentTime + " ")
             // Icon
-
+            let iconSelect = onecallData.current.weather[0].icon
+            var img = document.getElementById('main-weathericon')
+            img.src = ("http://openweathermap.org/img/w/" + iconSelect + ".png")
             // populate 5 days section
 
         });
@@ -79,3 +81,4 @@ function search(event){
 
 document.getElementById('search-form').addEventListener("submit", search);
 
+// http://openweathermap.org/img/w/

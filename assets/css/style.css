@@ -44,6 +44,7 @@ main {
 .main-display {
     border: 1px solid black;
     height: 45%;
+    background-color: thistle;
 }
 
 .five-day-area {
