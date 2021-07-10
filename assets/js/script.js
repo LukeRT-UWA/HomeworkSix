@@ -1,5 +1,9 @@
 const apiKey = "bbc2b5e33bc93b1c9b2424b433881299"
 var currentTime = moment().format("DD" + "/" + "MM" + "/" + "YYYY");
+var tomorrow = moment().add(1, 'days')
+var tomorrowDate = tomorrow.format("DD" + "/" + "MM" + "/" + "YYYY");
+console.log(tomorrow)
+console.log(tomorrowDate)
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
 function getCityForecast(cityName) {
@@ -51,7 +55,7 @@ function search(event) {
             document.getElementById('main-city').textContent = (userInput + " ")
             // Temperature
             let todayTemp = original.main.temp;
-            let todayTempC = (todayTemp - 273);
+            let todayTempC = (todayTemp - -273.15);
             let todayTempFinal = todayTempC.toFixed(2)
             // Wind
             document.getElementById('main-temperature').textContent = ("Temp: " + todayTempFinal + "°C")
@@ -101,7 +105,9 @@ function search(event) {
                 console.log(daily)
                 let dailyIcon = daily.weather[0].icon
                 console.log(dailyIcon)
-                let dailyTemp = daily.temp
+                let dailyTemp = daily.temp.day
+                let dailyTempC = (dailyTemp - 273.15)
+                let dailyTempFinal = dailyTempC.toFixed(2)
                 let dailyWind = daily.wind_speed
                 let dailyHumidity = daily.humidity
                 // Create boxes on page
@@ -113,7 +119,7 @@ function search(event) {
                 // attach boxes to parent container
                 boxContainer.appendChild(boxDiv)
                 //create required fields in boxes + attach IDs
-                let boxDate = document.createElement("h3")
+                let boxDate = document.createElement("h1")
                 boxDiv.appendChild(boxDate)
                 boxDate.setAttribute("id", "box-date-" + index)
                 let boxIcon = document.createElement("img")
@@ -132,8 +138,13 @@ function search(event) {
                 boxList.appendChild(listHumidity)
                 listHumidity.setAttribute("id", "list-humidity-" + index)
                 //populate IDs with API data
-                document.getElementById('box-date-' + index).textContent = "filler"
-
+                let dateMoment = moment().add(index, 'days')
+                let dateMomentFormatted = dateMoment.format("DD" + "/" + "MM" + "/" + "YYYY");
+                document.getElementById('box-date-' + index).textContent = dateMomentFormatted
+                document.getElementById('box-icon-' + index).src = ("http://openweathermap.org/img/w/" + dailyIcon + ".png")
+                document.getElementById('list-temp-' + index).textContent = ("Temp: " + dailyTempFinal + "°C")
+                document.getElementById('list-wind-' + index).textContent = ("Wind: " + dailyWind + " Km/H")
+                document.getElementById('list-humidity-' + index).textContent = ("Humidity: " + dailyHumidity + " %")
             }
         });
 

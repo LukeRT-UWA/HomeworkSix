@@ -121,7 +121,7 @@ li {
 }
 
 .box li {
-    margin: 0;
+    margin: 10px 0 10px 0;
 }
 
 .low-severity {
@@ -157,4 +157,10 @@ li {
 .hide {
 
     display: none;
+}
+
+img {
+
+    margin: 0 20px 0 20px;
+
 }
