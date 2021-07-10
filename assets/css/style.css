@@ -43,7 +43,7 @@ main {
 
 .main-display {
     border: 1px solid black;
-    height: 50%;
+    height: 45%;
 }
 
 .five-day-area {
@@ -74,6 +74,7 @@ h1 {
     border: 1px solid black;
     width: 250px;
     height: 80%;
+    background-color: teal;
     
 }
 
@@ -119,4 +120,19 @@ li {
 
 .box li {
     margin: 0;
+}
+
+#main-UVI {
+
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 20px 5px 20px;
+
+}
+
+
+.hide {
+
+    display: none;
 }
