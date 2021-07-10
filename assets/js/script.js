@@ -2,43 +2,43 @@ const apiKey = "bbc2b5e33bc93b1c9b2424b433881299"
 var currentTime = moment().format("DD" + "/" + "MM" + "/" + "YYYY");
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
-function getCityForecast (cityName) {
-    
-    return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey)
-    .then( (data) => data.json())
-    .then(function(data){
-        console.log(data);
-        
-        const lon = data.coord.lon;
-        const lat = data.coord.lat;
-        return getOneCall(lat, lon)
-            .then( (onecallData) => {
-                return {
-                    originalData: data,
-                    onecallData: onecallData,
+function getCityForecast(cityName) {
 
-                }
-            })
-        
-    })
-  
-    
+    return fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey)
+        .then((data) => data.json())
+        .then(function (data) {
+            console.log(data);
+
+            const lon = data.coord.lon;
+            const lat = data.coord.lat;
+            return getOneCall(lat, lon)
+                .then((onecallData) => {
+                    return {
+                        originalData: data,
+                        onecallData: onecallData,
+
+                    }
+                })
+
+        })
+
+
 }
 
 
 function getOneCall(lat, lon) {
-    
+
     return fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey)
-    .then( (data) => data.json())
-    
-    
+        .then((data) => data.json())
+
+
 }
 
 
-function search(event){
+function search(event) {
     event.preventDefault();
     const userInput = document.getElementById('search-input').value;
-    
+
     getCityForecast(userInput)
         .then((data) => {
             const original = data.originalData;
@@ -49,7 +49,7 @@ function search(event){
             // populate the today's weather section
             // City name
             document.getElementById('main-city').textContent = (userInput + " ")
-             // Temperature
+            // Temperature
             let todayTemp = original.main.temp;
             let todayTempC = (todayTemp - 273);
             let todayTempFinal = todayTempC.toFixed(2)
@@ -63,22 +63,49 @@ function search(event){
             let todayHumidity = original.main.humidity
             document.getElementById('main-humidity').textContent = ("Humidity: " + todayHumidity + " %")
             console.log(todayHumidity)
-            // UV Index
-            let todayUVI = onecallData.current.uvi
-            document.getElementById('main-UVI').classList.remove("hide")
-            document.getElementById('main-UVI').textContent = (todayUVI)
             // Date
             document.getElementById('main-date').textContent = (currentTime + " ")
             // Icon
             let iconSelect = onecallData.current.weather[0].icon
             var img = document.getElementById('main-weathericon')
             img.src = ("http://openweathermap.org/img/w/" + iconSelect + ".png")
-            // populate 5 days section
+            // UV Index
+            let todayUVI = onecallData.current.uvi
+            document.getElementById('main-UVI').textContent = (todayUVI)
+            // Set UVI background depending on severity
+            if (todayUVI < 3) {
+                document.getElementById('main-UVI').classList.add("low-severity")
+                document.getElementById('main-UVI').classList.remove("moderate-severity")
+                document.getElementById('main-UVI').classList.remove("high-severity")
+            }
 
+            else if (todayUVI >= 3 && todayUVI < 6) {
+                document.getElementById('main-UVI').classList.add("moderate-severity")
+                document.getElementById('main-UVI').classList.remove("low-severity")
+                document.getElementById('main-UVI').classList.remove("high-severity")
+            }
+
+            else {
+                document.getElementById('main-UVI').classList.add("high-severity")
+                document.getElementById('main-UVI').classList.remove("low-severity")
+                document.getElementById('main-UVI').classList.remove("moderate-severity")
+            }
+
+
+            // populate 5 days section
+            for (let index = 0; index < 5; index++) {
+                const daily = onecallData.daily[index];
+                console.log(daily)
+
+                let dailyTemp = daily.temp
+                let dailyWind = daily.wind_speed
+                let dailyHumidity = daily.humidity
+
+                
+            }
         });
 
 }
 
 document.getElementById('search-form').addEventListener("submit", search);
 
-// http://openweathermap.org/img/w/
