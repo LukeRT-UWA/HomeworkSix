@@ -44,6 +44,7 @@ function search(event) {
     savedArray.push(userInput);
     localStorage.setItem('search-history', JSON.stringify(savedArray));
     init();
+
     getCityForecast(userInput)
         .then((data) => {
             const original = data.originalData;
@@ -152,7 +153,7 @@ function search(event) {
 }
 
 document.getElementById('search-form').addEventListener("submit", search);
-
+document.getElementById('search-history').addEventListener("submit", search);
 function init() {
     
 var storedSearches = JSON.parse(localStorage.getItem("search-history"));
