@@ -35,6 +35,12 @@ function getOneCall(lat, lon) {
 
 }
 
+function searchAgain(event) {
+    const btnPressed = event.target;
+    document.getElementById('search-input').value = btnPressed.textContent
+    search(event)
+}
+
 
 function search(event) {
     event.preventDefault();
@@ -153,7 +159,6 @@ function search(event) {
 }
 
 document.getElementById('search-form').addEventListener("submit", search);
-document.getElementById('search-history').addEventListener("submit", search);
 function init() {
     
 var storedSearches = JSON.parse(localStorage.getItem("search-history"));
@@ -173,9 +178,10 @@ for (var i = 0; i < storedSearches.length; i++) {
 
     var button = document.createElement("button");
     button.textContent = searches
-
+    button.setAttribute("id", "button-" + i)
+    
     searchHistoryEl.appendChild(button);
-
+    document.getElementById("button-" + i).addEventListener("click", searchAgain);
 }
 console.log(storedSearches)
 }
