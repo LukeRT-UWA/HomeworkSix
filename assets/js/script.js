@@ -1,5 +1,6 @@
 const apiKey = "bbc2b5e33bc93b1c9b2424b433881299"
 var currentTime = moment().format("DD" + "/" + "MM" + "/" + "YYYY");
+var savedArray = [];
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
 function getCityForecast(cityName) {
@@ -38,6 +39,10 @@ function getOneCall(lat, lon) {
 function search(event) {
     event.preventDefault();
     var userInput = document.getElementById('search-input').value;
+     // record user input to local storage
+    localStorage.setItem("savedArray", JSON.stringify(userInput));
+    console.log(savedArray)
+   
 
     getCityForecast(userInput)
         .then((data) => {
