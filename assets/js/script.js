@@ -154,9 +154,16 @@ function search(event) {
 document.getElementById('search-form').addEventListener("submit", search);
 
 function init() {
-
+    
 var storedSearches = JSON.parse(localStorage.getItem("search-history"));
 var searchHistoryEl = document.getElementById('search-history')
+console.log(storedSearches)
+
+if (storedSearches !== null) {
+    savedArray = storedSearches;
+   
+
+
 searchHistoryEl.innerHTML = "";
 for (var i = 0; i < storedSearches.length; i++) {
     var searches = storedSearches[i];
@@ -171,5 +178,6 @@ for (var i = 0; i < storedSearches.length; i++) {
 }
 console.log(storedSearches)
 }
-
+}
 init()
+
