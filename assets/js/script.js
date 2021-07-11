@@ -41,15 +41,23 @@ function searchAgain(event) {
     search(event)
 }
 
+function preSearch(event) {
+
+    event.preventDefault();
+    var userInput = document.getElementById('search-input').value;
+    savedArray.push(userInput);
+    localStorage.setItem('search-history', JSON.stringify(savedArray));
+    search(event)
+    init();
+}
+
 
 function search(event) {
     event.preventDefault();
     var userInput = document.getElementById('search-input').value;
      // record user input to local storage
       
-    savedArray.push(userInput);
-    localStorage.setItem('search-history', JSON.stringify(savedArray));
-    init();
+   
 
     getCityForecast(userInput)
         .then((data) => {
@@ -158,7 +166,7 @@ function search(event) {
 
 }
 
-document.getElementById('search-form').addEventListener("submit", search);
+document.getElementById('search-form').addEventListener("submit", preSearch);
 function init() {
     
 var storedSearches = JSON.parse(localStorage.getItem("search-history"));
