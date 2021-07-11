@@ -1,6 +1,6 @@
 const apiKey = "bbc2b5e33bc93b1c9b2424b433881299"
 var currentTime = moment().format("DD" + "/" + "MM" + "/" + "YYYY");
-var savedArray = [];
+var savedArray = [] 
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 
 function getCityForecast(cityName) {
@@ -40,10 +40,10 @@ function search(event) {
     event.preventDefault();
     var userInput = document.getElementById('search-input').value;
      // record user input to local storage
-    localStorage.setItem("savedArray", JSON.stringify(userInput));
-    console.log(savedArray)
-   
-
+      
+    savedArray.push(userInput);
+    localStorage.setItem('search-history', JSON.stringify(savedArray));
+    init();
     getCityForecast(userInput)
         .then((data) => {
             const original = data.originalData;
@@ -153,5 +153,23 @@ function search(event) {
 
 document.getElementById('search-form').addEventListener("submit", search);
 
+function init() {
 
+var storedSearches = JSON.parse(localStorage.getItem("search-history"));
+var searchHistoryEl = document.getElementById('search-history')
+searchHistoryEl.innerHTML = "";
+for (var i = 0; i < storedSearches.length; i++) {
+    var searches = storedSearches[i];
+    
+    var searchHistoryEl = document.getElementById('search-history')
 
+    var button = document.createElement("button");
+    button.textContent = searches
+
+    searchHistoryEl.appendChild(button);
+
+}
+console.log(storedSearches)
+}
+
+init()
