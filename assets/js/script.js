@@ -125,6 +125,8 @@ function search(event) {
                 let dailyTempC = (dailyTemp - 273.15)
                 let dailyTempFinal = dailyTempC.toFixed(2)
                 let dailyWind = daily.wind_speed
+                let dailyWindKpH = (dailyWind * 1.609344)
+                let dailyWindFinal = dailyWindKpH.toFixed(2)
                 let dailyHumidity = daily.humidity
                 // Create boxes on page
                 let boxContainer = document.getElementById('box-container')
@@ -138,17 +140,22 @@ function search(event) {
                 let boxDate = document.createElement("h1")
                 boxDiv.appendChild(boxDate)
                 boxDate.setAttribute("id", "box-date-" + index)
+                //Create boxes
                 let boxIcon = document.createElement("img")
                 boxDiv.appendChild(boxIcon)
                 boxIcon.setAttribute("id", "box-icon-" + index)
+                // BoxList
                 let boxList = document.createElement("ul")
                 boxDiv.appendChild(boxList)
                 boxList.setAttribute("id", "box-list-" + index)
+                //Temperature
                 let listTemp = document.createElement("li")
                 boxList.appendChild(listTemp)
                 listTemp.setAttribute("id", "list-temp-" + index)
+                // Wind
                 let listWind = document.createElement("li")
                 boxList.appendChild(listWind)
+                // Humidity
                 listWind.setAttribute("id", "list-wind-" + index)
                 let listHumidity = document.createElement("li")
                 boxList.appendChild(listHumidity)
@@ -159,7 +166,7 @@ function search(event) {
                 document.getElementById('box-date-' + index).textContent = dateMomentFormatted
                 document.getElementById('box-icon-' + index).src = ("http://openweathermap.org/img/w/" + dailyIcon + ".png")
                 document.getElementById('list-temp-' + index).textContent = ("Temp: " + dailyTempFinal + "°C")
-                document.getElementById('list-wind-' + index).textContent = ("Wind: " + dailyWind + " Km/H")
+                document.getElementById('list-wind-' + index).textContent = ("Wind: " + dailyWindFinal + " Km/H")
                 document.getElementById('list-humidity-' + index).textContent = ("Humidity: " + dailyHumidity + " %")
             }
         });
