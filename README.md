@@ -2,6 +2,8 @@
 
 ![Website Screenshot](assets/images/websitescreenshot.JPG)
 
+https://lukert-uwa.github.io/Weather-Dashboard/
+
 Homework Six - very inefficient method used in my for loop that I now understand, may fix it at a later date.
 
 ## Criteria
